@@ -1,6 +1,7 @@
-#########################################
-# SayCow Quotations Library For Jasmine #
-#########################################
+
+#####################################
+# SayCow Quotations App For Jasmine #
+#####################################
 
 import json
 import re
@@ -13,17 +14,17 @@ import interaction
 # Public Functions #
 ####################
 
-#Identifies the job type in a unique id.
-job_id = "saycow"
+#Identifies the app in a unique id.
+app_id = "saycow"
 
-#In any lib_* file, "check" function checks if the post/news item is of the libary's corresponding post
+#In any lib_* file, "check" function checks if the post/news item is of the app's corresponding post
 def check(post):
 	matchObj = re.search(r"^(?:think\s*!*|quote|wassup|howdy|sup|what\'?s\s*up|say\s*what)\s*[\?!]*\s*",post['message'])
 	if matchObj:
 		return True
 	return False
 
-#After confirming that the message/status corresponds to the current library using the "check" function above, "execute" function
+#After confirming that the message/status corresponds to the current app using the "check" function above, "execute" function
 #is called to do the actual work
 
 def execute(post):
