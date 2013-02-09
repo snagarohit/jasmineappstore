@@ -9,6 +9,8 @@
 import json
 import urllib2
 import re
+import string
+import math
 import random
 import environment
 import interaction
@@ -23,7 +25,8 @@ app_id = "TrainPNR"
 
 #In any lib_* file, "check" function checks if the post/news item is of the app's corresponding post
 def check(post):
-	matchObj = re.search(r"^(?:(pnr|PNR))\s*[\?!]*\s*",post['message'])
+#matchObj = re.search(r"^(?:(pnr|PNR))\s*[\?!]*\s*",post['message'])
+	matchObj = re.search(r"^[a-zA-Z,:;' .!?/<>=]*[p|P][n|N][r|R][a-zA-Z,:;' .!?/<>=]*[0-9]{10}[[a-zA-Z,:;' .!?/<>=]*|[ ][0-9a-zA-Z,:;' .!?/<>=]*]$",post['message'])
 	if matchObj:
 		return True
 	return False
@@ -37,6 +40,7 @@ def execute(post):
 	i = ""
 	for p in plist:
 		try:
+			p = ''.join(x for x in p if x.isdigit())
 			if(len(p)==10):
 				int(p)
 				i = p
@@ -70,7 +74,7 @@ def execute(post):
 			output += "Date : "+data['travel_date']['date'] + '\n'
 			output += "Passenger : "
 			for k in data['passenger']:
-				output += "\n\tSeat No :"+k['seat_number']+'\n'
-			output += "Chart Prepared : "+str(data['chart_prepared']) + '\n'
+				output += "\n\tSeat No :"+k['seat_number']
+			output += "\nChart Prepared : "+str(data['chart_prepared']) + '\n'
 		
 	return output
