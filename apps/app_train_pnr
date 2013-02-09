@@ -1,8 +1,9 @@
 #####################################
 # Checking PNR status App For Jasmine
-# Made by -   Harsh Gupta
+# Made by -   	Harsh Gupta
 #		Rishikesh Ghewari
-#		Shagun Rawat		
+#		Shagun Rawat
+#		Deepanshu Goyal
 #####################################
 
 import json
