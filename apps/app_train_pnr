@@ -1,8 +1,8 @@
 #####################################
 # Checking PNR status App For Jasmine
-# Made by -   	Harsh Gupta
+# Made by - 	Harsh Gupta
 #		Rishikesh Ghewari
-#		Shagun Rawat
+#		Shagun Rawat		
 #		Deepanshu Goyal
 #####################################
 
@@ -47,14 +47,14 @@ def execute(post):
 			continue
 
 	if i == "":
-		print "pnr must be a 10 digit integer"
+		return "pnr must be a 10 digit integer"
 	else:
-		print i
+		
 		query = "http://pnrapi.alagu.net/api/v1.0/pnr/" + i
 		req = urllib2.Request(query)
 		resp = urllib2.urlopen(req)
 		text = json.load(resp)
-		output = ""
+		output = "PNR : "+i +'\n'
 		output += "Status : " + text['status'] + '\n'
 		if text['status'] == 'INVALID':
 			data = text["data"]
