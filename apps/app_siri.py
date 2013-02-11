@@ -25,6 +25,10 @@ app_id = "siri"
 
 #In any lib_* file, "check" function checks if the post/news item is of the app's corresponding post
 def check(post):
+	#Check if it's a tagged sentence (marked for some other apps)
+	if re.search(r'#[A-Za-z0-9]',post['message']):
+		return False
+	
 	tokenized_words = nltk.word_tokenize(post['message'])
 	tagged_words = nltk.pos_tag(tokenized_words)
 	finalized_tagged_words = []
