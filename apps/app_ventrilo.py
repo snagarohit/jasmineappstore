@@ -1,6 +1,6 @@
 
 ###################################################################################
-# Ventrillo Status Repeating App which speaks the status requested by its friends #
+# Ventrilo Status Repeating App which speaks the status requested by its friends #
 ###################################################################################
 
 import json
@@ -17,11 +17,11 @@ import interaction
 ####################
 
 #Identifies the app in a unique id.
-app_id = "ventrillo"
+app_id = "ventrilo"
 
 #In any lib_* file, "check" function checks if the post/news item is of the app's corresponding post
 def check(post):
-	matchObj = re.search(r"#[Vv][eE][nN][tT][rR][iI][lL][lL][oO]",post['message'])
+	matchObj = re.search(r"#[Vv][eE][nN][tT][rR][iI][lL][oO]",post['message'])
 	if matchObj:
 		if re.search(r'(#[jJ][aA][sS][mM][iI][nN][eE]|#[jJ][aA][sS][mM][iI][nN][eE] [lL][aA][bB])',post['message']):
 			return True
@@ -35,7 +35,7 @@ def check(post):
 def execute(post):
 	#Stripping ventrillo app markers from the status
 	status = re.sub(r'\s*(#[jJ][aA][sS][mM][iI][nN][eE]|#[jJ][aA][sS][mM][iI][nN][eE] [lL][aA][bB])\s*','',post['message'])
-	status = re.sub(r'\s*#[Vv][eE][nN][tT][rR][iI][lL][lL][oO]\s*','',status)
+	status = re.sub(r'\s*#[Vv][eE][nN][tT][rR][iI][lL][oO]\s*','',status)
 	#Get the user name for the post
 	user_name = post['name']
 	first_name = user_name.split()[0]+" "+user_name.split()[1][0] #It'll be like "Naga R" for "Naga Rohit"
